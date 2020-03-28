@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+  db:
+    image: postgres
+    environment: 
+      - POSTGRES_PASSWORD=password
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      # Mount the development directory as a volume into the container, so
+      # Docker automatically recognizes your changes.
+      - .:/code
+    ports:
+      - "8000:8000"
+    # Allow container to be attached to, e.g., to access the pdb shell
+    stdin_open: true
+    tty: true
+    depends_on:
+      - db
