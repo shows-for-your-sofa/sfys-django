@@ -6,7 +6,7 @@ services:
     environment: 
       - POSTGRES_PASSWORD=password
   web:
-    build: .
+    image: shows-for-your-sofa:latest
     command: python manage.py runserver 0.0.0.0:8000
     volumes:
       # Mount the development directory as a volume into the container, so
